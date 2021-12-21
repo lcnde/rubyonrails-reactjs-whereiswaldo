@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Where is Waldo
 
-Things you may want to cover:
+## About this app
 
-* Ruby version
+This app was created to learn how to use React as front-end on Ruby on Rails. 
+Rails is used as back-end and handles API requests from the fron-end.
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
