@@ -9,4 +9,8 @@ Rails is used as back-end and handles API requests from the fron-end.
 
 # Database Table
 
-![Database Table](README_images/uL7pb53uuO.jpg)
+id int pk
+map int
+x_coords double
+y_coords double
+charater string
