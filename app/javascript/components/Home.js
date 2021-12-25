@@ -7,7 +7,7 @@ const Home = () => {
     <React.Fragment>
       <h1>Home page</h1>
       <Link
-        to="Level"
+        to="level_one"
         >
         Level 1
       </Link>
