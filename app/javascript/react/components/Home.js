@@ -8,12 +8,12 @@ const Home = () => {
 
   const insertUsername = () => {
     return(
-      <div class="username-form-container">
-        <div class="image-container">
-          <div class="waldo-image-overlay unselectable"></div>
-          <img class="waldo-image" src={WaldoImage} />
+      <div className="username-form-container">
+        <div className="image-container">
+          <div className="waldo-image-overlay unselectable"></div>
+          <img className="waldo-image" src={WaldoImage} />
         </div>
-        <div class="form-container">
+        <div className="form-container">
           <form>
             <fieldset>
               <label>
@@ -28,9 +28,8 @@ const Home = () => {
   }
 
   return(
-      <div class="home-container">
-        {/* <h1>Home page</h1>
-        <Link
+      <div className="home-container">
+        {/* <Link
           to="level_one"
           >
           Level 1
