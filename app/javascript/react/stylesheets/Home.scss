@@ -1,0 +1,73 @@
+$background-color: #7B2020;
+
+.home-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .username-form-container {
+    display: grid;
+    gap: 20px;
+    .image-container {
+      //position relative is used because the "unselectable" class from "main.scss" uses absolute positioning
+      position: relative;
+      max-width: 100%;
+      // max-height: 500px;
+      overflow: hidden;
+      box-sizing: border-box;
+  
+      .waldo-image {
+        box-sizing: border-box;
+        max-width: 100%;
+        overflow: hidden;
+      }
+    }
+    .form-container {
+      display: grid;
+      justify-content: center;
+      form {
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+
+        row-gap: 10px;
+        background-color: white;
+        padding: 30px 0;
+        border-radius: 10px;
+        width: 300px;
+
+        fieldset{
+          
+          label {
+            
+            display: flex;
+            justify-content: center;
+
+            
+            input {
+              min-width: 250px;
+              width: 80%;
+              height: 40px;
+              border-radius: 100px;
+              border: 1px solid lightgray;
+              color: rgb(109, 109, 109);
+              font-size: 16px;
+              text-align: center;
+            }
+          }
+        }
+        button {
+          height: 40px;
+          width: 150px;
+          border-radius: 100px;
+          border: none;
+          background-color: #4BA549;
+          color: white;
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
