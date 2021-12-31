@@ -9,11 +9,5 @@ Rails is used as back-end and handles API requests from the front-end.
 
 # Database Tables
 
-id int pk
-map int
-x_coords double
-y_coords double
-charater string
-
 (waldo wenda odlaw wizard)
 
