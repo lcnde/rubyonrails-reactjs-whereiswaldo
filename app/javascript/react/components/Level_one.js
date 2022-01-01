@@ -7,7 +7,7 @@ const Level_one = () => {
 
   //equals to componentDidMount
   useEffect(() => {
-    const url = "/api/v1/show/1"
+    const url = "/api/v1/levels/show/1"
     fetch(url).then(response => {
       if (response.status === 200){
         console.log('Status 200')
@@ -25,7 +25,8 @@ const Level_one = () => {
       }).catch(err => console.log(err))
     }, [])
     
-    console.log("Current coords status:", coords)
+
+    // console.log("Current coords status:", coords)
 
   return(
     <React.Fragment>
