@@ -6,8 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import App from '../react/components/App'
-import "../node_modules/react-date-range/dist/styles.css";
-import "../node_modules/react-date-range/dist/theme/default.css";
+
 
 document.addEventListener('turbolinks:load', () => {
   ReactDOM.render(
