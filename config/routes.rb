@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
   namespace :api do
     namespace :v1 do
+      post 'users/create', to: 'users#create'
       # get 'coords/index'
       # get '/show/:map', to: 'coords#show'
       get 'levels/index'

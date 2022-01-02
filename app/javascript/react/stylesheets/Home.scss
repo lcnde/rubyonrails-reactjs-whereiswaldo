@@ -37,25 +37,16 @@ $background-color: #7B2020;
         border-radius: 10px;
         width: 300px;
 
-        fieldset{
-          
-          label {
-            
-            display: flex;
-            justify-content: center;
+          input {
+            min-width: 250px;
+            width: 80%;
+            height: 40px;
+            border-radius: 100px;
+            border: 1px solid lightgray;
+            color: rgb(109, 109, 109);
+            font-size: 16px;
+            text-align: center;
 
-            
-            input {
-              min-width: 250px;
-              width: 80%;
-              height: 40px;
-              border-radius: 100px;
-              border: 1px solid lightgray;
-              color: rgb(109, 109, 109);
-              font-size: 16px;
-              text-align: center;
-            }
-          }
         }
         button {
           height: 40px;
