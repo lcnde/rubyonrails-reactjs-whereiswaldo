@@ -4,7 +4,7 @@ import '../stylesheets/Home.scss';
 import WaldoImage from '../assets/images/waldo.jpg';
 
 
-const Home = () => {
+const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
 
   useEffect(() => {
@@ -14,11 +14,35 @@ const Home = () => {
     setAuthToken(csrfToken[0].attributes[1].value);
   }, [])
 
-  const formPreventDefault = (e) => {
+  const usernameFormSubmit = (e) => {
     e.preventDefault();
-    console.log('it works')
+    console.log('Username form prevent default')
+    const url = 'api/v1/users/create';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        //Rails automatically accepts json params as long as the content-type header is set to application/json
+        'Content-Type': 'application/json'
+      },
+      body: `{
+        "username": "${props.username}",
+        "authenticity_token": "${authToken}"
+      }`,
+    }).then(response => {
+      console.log(response)
+      return response.json()
+    }).then(response => {
+      console.log(response)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
+  const usernameHandleChange = (e) => {
+    props.setUsername(e.target.value)
+  }
+  
   const insertUsername = () => {
     return(
       <div className="username-form-container">
@@ -27,9 +51,10 @@ const Home = () => {
           <img className="waldo-image" src={WaldoImage} />
         </div>
         <div className="form-container">
-          <form action="/api/v1/users/create" method="POST" id="createUser" name="createUser" onSubmit={formPreventDefault}>
+          {/* <form action="/api/v1/users/create" method="POST" id="createUser" name="createUser" onSubmit={formPreventDefault}> */}
+          <form id="createUser" name="createUser" onSubmit={usernameFormSubmit}>
             <input name="authenticity_token" type="hidden" value={authToken} />
-            <input name="username" placeholder="Insert your gamer tag" />
+            <input name="username" placeholder="Insert your gamer tag" onChange={usernameHandleChange} value={props.username} />
             <button type="submit">Confirm</button>
           </form>
         </div>

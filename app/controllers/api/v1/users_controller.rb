@@ -16,6 +16,7 @@ class Api::V1::UsersController < ApplicationController
 
     if @user.save
       puts("User was created!")
+      render json: @user
     else
       render json: @user.errors
     end

@@ -27,6 +27,9 @@ If a new Clock record is created, the app will check its database for previous C
 A record is uploaded to the Scores table only if its "finished" attribute is true, meaning that the user has found all 4 characters.
 This mechanism is implemented so the database doesn't store unfinished (so therefore obsolete) games records.
 
+edit:
+attack user_id to the clock, and delete the clock record only if the same user creates multiple ones without finishing the game. If you delete an unfinished clock record every time a new one is created, it may happen that if 2 users are playing at the same time, when the 2nd creates a new clock, the clock of the 1st will get deleted and his score won't be registered if he finishes the game.
+
 # Database Tables
 
 (waldo wenda odlaw wizard)
