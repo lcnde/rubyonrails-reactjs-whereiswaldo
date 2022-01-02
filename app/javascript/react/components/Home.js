@@ -14,11 +14,10 @@ const Home = () => {
     setAuthToken(csrfToken[0].attributes[1].value);
   }, [])
 
-  const usernameSubmitButton = () => {
-    document.forms["createUser"].submit();
-    console.log('hi')
+  const formPreventDefault = (e) => {
+    e.preventDefault();
+    console.log('it works')
   }
-
 
   const insertUsername = () => {
     return(
@@ -28,10 +27,10 @@ const Home = () => {
           <img className="waldo-image" src={WaldoImage} />
         </div>
         <div className="form-container">
-          <form action="/api/v1/users/create" method="POST" id="createUser" name="createUser">
+          <form action="/api/v1/users/create" method="POST" id="createUser" name="createUser" onSubmit={formPreventDefault}>
             <input name="authenticity_token" type="hidden" value={authToken} />
             <input name="username" placeholder="Insert your gamer tag" />
-            <button type="reset" onClick={() => usernameSubmitButton()}>Confirm</button>
+            <button type="submit">Confirm</button>
           </form>
         </div>
       </div>
