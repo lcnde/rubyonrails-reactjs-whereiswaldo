@@ -30,6 +30,10 @@ This mechanism is implemented so the database doesn't store unfinished (so there
 edit:
 attack user_id to the clock, and delete the clock record only if the same user creates multiple ones without finishing the game. If you delete an unfinished clock record every time a new one is created, it may happen that if 2 users are playing at the same time, when the 2nd creates a new clock, the clock of the 1st will get deleted and his score won't be registered if he finishes the game.
 
+Edit:
+The user is creating using Async javascript. With the fetch api a post request is submitted to the server. Rails will automatically understands to assign the request body to params because the request headers contain 'application/json'. 
+Also an authenticity token is passed. Without it Rails will not accept user inputs.
+
 # Database Tables
 
 (waldo wenda odlaw wizard)
