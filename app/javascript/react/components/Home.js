@@ -7,6 +7,7 @@ import WaldoImage from '../assets/images/waldo.jpg';
 const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [userCreation, setUserCreation] = useState('usercreated_false')
 
   useEffect(() => {
     //Authtoken is necessary or else Rails will not accept the form
@@ -42,11 +43,13 @@ const Home = (props) => {
         setErrorMessage(response.username[0])
       } else {
         setErrorMessage('')
+        setUserCreation('usercreated_true')
       }
     }).catch(err => {
       console.log(err)
     })
   }
+
 
   const usernameHandleChange = (e) => {
     props.setUsername(e.target.value)
@@ -81,14 +84,33 @@ const Home = (props) => {
     )
   }
 
+  const selectLevel = () => {
+    return(
+      <h1>Hello {props.username}</h1>
+    )
+  }
+
   return(
       <div className="home-container">
-        {/* <Link
-          to="level_one"
-          >
-          Level 1
-        </Link> */}
-        {insertUsername()}
+        {
+            (() => {
+              if (userCreation === 'usercreated_false') {
+                return(
+                  //if the user was not yet created it returns the prompt to create a new user
+                  <React.Fragment>
+                    {
+                      insertUsername()
+                    }
+                  </React.Fragment>
+                )
+              } else {
+                return(
+                  //if the user was created it will display the levels available to play
+                  <h1>Hello {props.username}</h1>
+                )
+              }
+            })()
+        }
       </div>
   ) 
 }
