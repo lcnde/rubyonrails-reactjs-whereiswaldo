@@ -6,6 +6,7 @@ import WaldoImage from '../assets/images/waldo.jpg';
 
 const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     //Authtoken is necessary or else Rails will not accept the form
@@ -30,10 +31,18 @@ const Home = (props) => {
         "authenticity_token": "${authToken}"
       }`,
     }).then(response => {
-      console.log(response)
+      //raw response
+      // console.log(response)
       return response.json()
     }).then(response => {
+      //json response
       console.log(response)
+      console.log(response.username)
+      if (response.username !== props.username) {
+        setErrorMessage(response.username[0])
+      } else {
+        setErrorMessage('')
+      }
     }).catch(err => {
       console.log(err)
     })
@@ -58,6 +67,16 @@ const Home = (props) => {
             <button type="submit">Confirm</button>
           </form>
         </div>
+          {
+            //if-else statements don't work inside of react dom, so I wrapped it inside a immediately Invoked Function
+            (() => {
+              if (errorMessage !== '') {
+                return(
+                  <div className="error-message">{errorMessage}</div>
+                )
+              }
+            })()
+          }
       </div>
     )
   }
