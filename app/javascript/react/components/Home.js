@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../stylesheets/Home.scss';
 import WaldoImage from '../assets/images/waldo.jpg';
-
+import skiSlopes from '../assets/images/skiSlopes.jpeg';
+import spaceStation from '../assets/images/spaceStation.jpeg';
+import fruitLand from '../assets/images/fruitLand.jpeg';
 
 const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
@@ -86,7 +88,19 @@ const Home = (props) => {
 
   const selectLevel = () => {
     return(
-      <h1>Hello {props.username}</h1>
+      <div class="select-level-container">
+        <div class="levels-container">
+          <Link to="/level_one">
+            <img src={skiSlopes} />
+          </Link>
+          <Link to="/level_one">
+            <img src={spaceStation} />
+          </Link>
+          <Link to="/level_one">
+            <img src={fruitLand} />
+          </Link>
+        </div>
+      </div>
     )
   }
 
@@ -94,7 +108,7 @@ const Home = (props) => {
       <div className="home-container">
         {
             (() => {
-              if (userCreation === 'usercreated_false') {
+              if (userCreation !== 'usercreated_false') {
                 return(
                   //if the user was not yet created it returns the prompt to create a new user
                   <React.Fragment>
@@ -106,7 +120,11 @@ const Home = (props) => {
               } else {
                 return(
                   //if the user was created it will display the levels available to play
-                  <h1>Hello {props.username}</h1>
+                  <React.Fragment>
+                    {
+                      selectLevel()
+                    }
+                  </React.Fragment>
                 )
               }
             })()
