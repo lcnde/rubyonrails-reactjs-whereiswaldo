@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../stylesheets/Home.scss';
 import WaldoImage from '../assets/images/waldo.jpg';
 import skiSlopes from '../assets/images/skiSlopes.jpeg';
@@ -10,6 +10,9 @@ const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [userCreation, setUserCreation] = useState('usercreated_false')
+
+  const location = useLocation();
+  console.log(location)
 
   useEffect(() => {
     //Authtoken is necessary or else Rails will not accept the form
@@ -88,16 +91,19 @@ const Home = (props) => {
 
   const selectLevel = () => {
     return(
-      <div class="select-level-container">
-        <div class="levels-container">
-          <Link to="/level_one">
+      <div className="select-level-container">
+        <div className="levels-container">
+          <Link to="/level">
             <img src={skiSlopes} />
+            <h2 className="level-title">Easy - Ski Slopes</h2>
           </Link>
-          <Link to="/level_one">
+          <Link to="/level">
             <img src={spaceStation} />
+            <h2 className="level-title">Medium - Space Station</h2>
           </Link>
-          <Link to="/level_one">
+          <Link to="/level">
             <img src={fruitLand} />
+            <h2 className="level-title">Hard - Fruit Land</h2>
           </Link>
         </div>
       </div>
