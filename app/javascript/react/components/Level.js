@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Level_one = () => {
+const Level = () => {
   const [coords, setCoords] = useState([])
 
   //equals to componentDidMount
@@ -46,4 +46,4 @@ const Level_one = () => {
   ) 
 }
 
-export default Level_one;
+export default Level;
