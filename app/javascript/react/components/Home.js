@@ -9,7 +9,7 @@ import fruitLand from '../assets/images/fruitLand.jpeg';
 const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const [userCreation, setUserCreation] = useState('usercreated_false')
+  
 
   const location = useLocation();
   console.log(location)
@@ -19,6 +19,8 @@ const Home = (props) => {
     const csrfToken = document.getElementsByName("csrf-token")
     // console.log(csrfToken[0].attributes[1].value)
     setAuthToken(csrfToken[0].attributes[1].value);
+    // Reset the state level when the user comes back to home page
+    props.setLevel('')
   }, [])
 
   const usernameFormSubmit = (e) => {
@@ -48,7 +50,7 @@ const Home = (props) => {
         setErrorMessage(response.username[0])
       } else {
         setErrorMessage('')
-        setUserCreation('usercreated_true')
+        props.setUserCreation('usercreated_true')
       }
     }).catch(err => {
       console.log(err)
@@ -59,6 +61,11 @@ const Home = (props) => {
   const usernameHandleChange = (e) => {
     props.setUsername(e.target.value)
   }
+
+  const linkToLevel = (lvl) => {
+    props.setLevel(lvl);
+  }
+
   
   const insertUsername = () => {
     return(
@@ -93,15 +100,15 @@ const Home = (props) => {
     return(
       <div className="select-level-container">
         <div className="levels-container">
-          <Link to="/level">
+          <Link to="/level" onClick={() => linkToLevel('level_one')}>
             <img src={skiSlopes} />
             <h2 className="level-title">Easy - Ski Slopes</h2>
           </Link>
-          <Link to="/level">
+          <Link to="/level" onClick={() => linkToLevel('level_two')}>
             <img src={spaceStation} />
             <h2 className="level-title">Medium - Space Station</h2>
           </Link>
-          <Link to="/level">
+          <Link to="/level" onClick={() => linkToLevel('level_three')}>
             <img src={fruitLand} />
             <h2 className="level-title">Hard - Fruit Land</h2>
           </Link>
@@ -114,7 +121,7 @@ const Home = (props) => {
       <div className="home-container">
         {
             (() => {
-              if (userCreation !== 'usercreated_false') {
+              if (props.userCreation === 'usercreated_false') {
                 return(
                   //if the user was not yet created it returns the prompt to create a new user
                   <React.Fragment>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Level = () => {
+const Level = (props) => {
   const [coords, setCoords] = useState([])
 
   //equals to componentDidMount
@@ -27,10 +27,11 @@ const Level = () => {
     
 
     // console.log("Current coords status:", coords)
+    console.log(`Level: ${props.level}`)
 
   return(
     <React.Fragment>
-      <h1>Level 1 page</h1>
+      <h1>{props.level}</h1>
       <Link
         to="/"
       >
