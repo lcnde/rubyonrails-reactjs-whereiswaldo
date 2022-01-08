@@ -8,7 +8,8 @@ const Router = (props) => {
 
   return(
     <BrowserRouter>
-      <Header username={props.username}/>
+      <Header username={props.username}
+              level={props.level} />
       <Routes>
         <Route path="/" exact element={<Home  username={props.username}
                                               setUsername={props.setUsername}

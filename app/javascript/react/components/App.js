@@ -18,7 +18,7 @@ const App = () => {
               username={username}
               setUsername={setUsername}
               userCreation={userCreation}
-              setUserCreation={setUserCreation}/>
+              setUserCreation={setUserCreation} />
     </React.Fragment>
   ) 
 }

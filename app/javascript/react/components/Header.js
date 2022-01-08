@@ -11,7 +11,7 @@ const Header = (props) => {
           <Icon className="home-icon">home</Icon>
         </Link>
       </div>
-      <div className="level-info">Ski Slopes - 00:00</div>
+      <div className="level-info">{props.level[1]} - 00:00</div>
       <div className="user-greet">
         <span className="welcome">Welcome</span>
         <span className="welcome-username">{props.username}</span>

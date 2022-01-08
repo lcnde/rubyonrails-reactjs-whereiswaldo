@@ -100,15 +100,15 @@ const Home = (props) => {
     return(
       <div className="select-level-container">
         <div className="levels-container">
-          <Link to="/level" onClick={() => linkToLevel('level_one')}>
+          <Link to="/level" onClick={() => linkToLevel(['level_one', 'Ski Slopes'])}>
             <img src={skiSlopes} />
             <h2 className="level-title">Easy - Ski Slopes</h2>
           </Link>
-          <Link to="/level" onClick={() => linkToLevel('level_two')}>
+          <Link to="/level" onClick={() => linkToLevel(['level_two', 'Space Station'])}>
             <img src={spaceStation} />
             <h2 className="level-title">Medium - Space Station</h2>
           </Link>
-          <Link to="/level" onClick={() => linkToLevel('level_three')}>
+          <Link to="/level" onClick={() => linkToLevel(['level_three', 'Fruit Land'])}>
             <img src={fruitLand} />
             <h2 className="level-title">Hard - Fruit Land</h2>
           </Link>
