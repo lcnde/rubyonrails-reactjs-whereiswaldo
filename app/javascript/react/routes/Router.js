@@ -9,14 +9,17 @@ const Router = (props) => {
   return(
     <BrowserRouter>
       <Header username={props.username}
-              level={props.level} />
+              level={props.level}
+              location={props.location} />
       <Routes>
         <Route path="/" exact element={<Home  username={props.username}
                                               setUsername={props.setUsername}
                                               setLevel={props.setLevel} 
                                               userCreation={props.userCreation}
-                                              setUserCreation={props.setUserCreation}/>} />
-        <Route path="level" element={<Level level={props.level}/>} />
+                                              setUserCreation={props.setUserCreation}
+                                              setLocation={props.setLocation} />} />
+        <Route path="level" element={<Level level={props.level}
+                                            setLocation={props.setLocation} />} />
       </Routes>
     </BrowserRouter>
   ) 

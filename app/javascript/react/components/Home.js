@@ -11,9 +11,16 @@ const Home = (props) => {
   const [errorMessage, setErrorMessage] = useState('')
   
 
-  const location = useLocation();
-  console.log(location)
+  const currentLocation = useLocation();
+  
+  useEffect(() => {
+    const currentLocationFunction = (() => {
+      console.log(`Location: ${currentLocation.pathname}`)
+      props.setLocation(currentLocation.pathname)
+    })();
 
+  }, [])
+  
   useEffect(() => {
     //Authtoken is necessary or else Rails will not accept the form
     const csrfToken = document.getElementsByName("csrf-token")

@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const Level = (props) => {
   const [coords, setCoords] = useState([])
+
+  const currentLocation = useLocation();
+  
+  useEffect(() => {
+    const currentLocationFunction = (() => {
+      console.log(`Location: ${currentLocation.pathname}`)
+      props.setLocation(currentLocation.pathname)
+    })();
+
+  }, [])
+
 
   //equals to componentDidMount
   useEffect(() => {
