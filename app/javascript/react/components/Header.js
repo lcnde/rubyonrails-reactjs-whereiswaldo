@@ -4,16 +4,6 @@ import '../stylesheets/Header.scss';
 import Icon from '@mui/material/Icon';
 
 const Header = (props) => {
-  
-  // const currentLocation = useLocation();
-  
-  // useEffect(() => {
-  //   const currentLocationFunction = (() => {
-  //     console.log(`Location: ${currentLocation.pathname}`)
-  //     setLocation(currentLocation.pathname)
-  //   })();
-
-  // }, [])
 
   return(
     <div className="header-container">
@@ -32,7 +22,7 @@ const Header = (props) => {
               )
             } else if (props.location === '/level') {
               return(
-                <h1>{props.level[1]} - 00:00</h1>
+                <h1>{props.level[1]}</h1>
               )
             }
           })()

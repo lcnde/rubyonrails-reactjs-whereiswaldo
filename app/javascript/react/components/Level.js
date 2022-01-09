@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import skiSlopes from '../assets/images/skiSlopes.jpeg';
+import spaceStation from '../assets/images/spaceStation.jpeg';
+import fruitLand from '../assets/images/fruitLand.jpeg';
+import odlawProfilePic from '../assets/images/odlaw-profile-pic.jpg';
+import waldoProfilePic from '../assets/images/waldo-profile-pic.jpg';
+import wendaProfilePic from '../assets/images/wenda-profile-pic.jpg';
+import wizardProfilePic from '../assets/images/wizard-profile-pic.jpg';
+
 
 
 const Level = (props) => {
@@ -17,6 +25,7 @@ const Level = (props) => {
 
 
   //equals to componentDidMount
+  //fetches coords from API
   useEffect(() => {
     const url = "/api/v1/levels/show/1"
     fetch(url).then(response => {
@@ -41,20 +50,26 @@ const Level = (props) => {
     console.log(`Level: ${props.level}`)
 
   return(
-    <React.Fragment>
-      <h1>{props.level}</h1>
-      <Link
-        to="/"
-      >
-        Go back to home
-      </Link>
-      <br/>
-      {
+    <div className="level-main-container">
+      {/* <h1>{props.level}</h1> */}
+      <div class="characters-and-timer-container">
+        <div class="characters-container">
+          <img src={waldoProfilePic} />
+          <img src={wendaProfilePic} />
+          <img src={odlawProfilePic} />
+          <img src={wizardProfilePic} />
+        </div>
+        <div class="timer-container">
+          <h2>00:00</h2>
+        </div>
+      </div>
+      <img className="level-image" src={skiSlopes} />
+      {/* {
         coords.map(data => 
           <h1>{data.x_coords}</h1>
-        )
-      }
-    </React.Fragment>
+          )
+        } */}
+    </div>
   ) 
 }
 

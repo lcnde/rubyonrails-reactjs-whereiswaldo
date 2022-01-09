@@ -1,6 +1,7 @@
 @import 'Home.scss';
 @import 'cssReset.scss';
 @import 'Header.scss';
+@import 'Level.scss';
 
 $background-color: #7B2020;
 
@@ -9,7 +10,6 @@ body {
   min-height: 100vh;
   background-color: $background-color;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 
