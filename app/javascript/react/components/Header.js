@@ -5,13 +5,24 @@ import Icon from '@mui/material/Icon';
 
 const Header = (props) => {
 
+  // home button will be visible only if the use is no already on the home page
+  const homeButtonVisibility = () => {
+    if (props.location !== '/') {
+      return(
+        <div className="home-button">
+          <Link to="/">
+            <Icon className="home-icon">home</Icon>
+          </Link>
+        </div>
+      )
+    } else {
+      return <div></div>
+    }
+  }
+
   return(
     <div className="header-container">
-      <div className="home-button">
-        <Link to="/">
-          <Icon className="home-icon">home</Icon>
-        </Link>
-      </div>
+      {homeButtonVisibility()}
       <div className="level-info">
         {/* {props.level[1]} - 00:00 */}
         {
