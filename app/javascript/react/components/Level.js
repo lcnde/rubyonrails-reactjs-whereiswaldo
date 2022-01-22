@@ -11,9 +11,10 @@ import wizardProfilePic from '../assets/images/wizard-profile-pic.jpg';
 
 
 const Level = (props) => {
-  const [coords, setCoords] = useState([])
-  const currentLocation = useLocation();
+  const [coords, setCoords] = useState('')
   const [foundCharacter, setFoundCharacter] = useState({waldo: "red", wenda: "red", odlaw: "red", wizard:"red"})
+
+  const currentLocation = useLocation();
   
   useEffect(() => {
     const currentLocationFunction = (() => {
@@ -49,12 +50,17 @@ const Level = (props) => {
         console.log('Request data: ', data)
         data.map((element) => {
           // console.log(element)
-          setCoords(prevState => [...prevState, element])
+          let stateElement = [element.id, element.map_id, element.game_character_id, element.x_coords, element.y_coords]
+          setCoords(prevState => [...prevState, stateElement])
         })
       }).catch(err => console.log(err))
     }, [])
 
-
+    console.log(coords)
+    //this functions changes the character border color if the user finds the character
+    const changeCharBorderColor = () => {
+      // console.log(coords)
+    }
     //converts the coords of the user clicks in case the resolution is different than 1920x1080
     //converted value of the clicks are what actually gets used to compare with the coords in the database, thats because if the canvas shrinks, the coords would be different than the click coords at fullHD resolution (which are stored in the database)
     const cursorPositionConverter = (clickX, clickY, canvasWidth, canvasHeight) => {
@@ -95,11 +101,10 @@ const Level = (props) => {
         let canvasDimensions = getCanvasDimensions(canvas)
         let convertedClickXY = cursorPositionConverter(clickXY[0], clickXY[1], canvasDimensions[0], canvasDimensions[1])
         console.log(convertedClickXY)
+        changeCharBorderColor()
       })
 
     }, [])
-
-
 
 
     //displays image based on the level
@@ -120,7 +125,7 @@ const Level = (props) => {
     }
 
     // console.log("Current coords status:", coords)
-    console.log(`Level: ${props.level}`)
+    // console.log(`Level: ${props.level}`)
 
     // this function assigns the color around the character (red if there were NOT found, lightgreen if they WERE found)
     const characterBorder = (char) => {
