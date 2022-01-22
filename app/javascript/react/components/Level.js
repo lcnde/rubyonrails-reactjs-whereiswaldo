@@ -44,7 +44,23 @@ const Level = (props) => {
         })
       }).catch(err => console.log(err))
     }, [])
-    
+
+    //displays image based on the level
+    const levelImage = () => {
+      if (props.level[0] === "level_one") {
+        return (
+          <img className="level-image" src={skiSlopes} />
+        )
+      } else if (props.level[0] === "level_two") {
+        return(
+          <img className="level-image" src={spaceStation} />
+        )
+      } else if (props.level[0] === "level_three") {
+        return(
+          <img className="level-image" src={fruitLand} />
+        )
+      }
+    }
 
     // console.log("Current coords status:", coords)
     console.log(`Level: ${props.level}`)
@@ -52,18 +68,18 @@ const Level = (props) => {
   return(
     <div className="level-main-container">
       {/* <h1>{props.level}</h1> */}
-      <div class="characters-and-timer-container">
-        <div class="characters-container">
+      <div className="characters-and-timer-container">
+        <div className="characters-container">
           <img src={waldoProfilePic} />
           <img src={wendaProfilePic} />
           <img src={odlawProfilePic} />
           <img src={wizardProfilePic} />
         </div>
-        <div class="timer-container">
+        <div className="timer-container">
           <h2>00:00</h2>
         </div>
       </div>
-      <img className="level-image" src={skiSlopes} />
+      {levelImage()}
       {/* {
         coords.map(data => 
           <h1>{data.x_coords}</h1>

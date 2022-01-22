@@ -127,27 +127,28 @@ const Home = (props) => {
   return(
       <div className="home-container">
         {
-            (() => {
-              if (props.userCreation === 'usercreated_false') {
-                return(
-                  //if the user was not yet created it returns the prompt to create a new user
-                  <React.Fragment>
-                    {
-                      insertUsername()
-                    }
-                  </React.Fragment>
-                )
-              } else {
-                return(
-                  //if the user was created it will display the levels available to play
-                  <React.Fragment>
-                    {
-                      selectLevel()
-                    }
-                  </React.Fragment>
-                )
-              }
-            })()
+          //everything is wrapped inside an immediately invoked function otherwise it is not possible to do an if statement
+          (() => {
+            if (props.userCreation === 'usercreated_false') {
+              return(
+                //if the user was not yet created it returns the prompt to create a new user
+                <React.Fragment>
+                  {
+                    insertUsername()
+                  }
+                </React.Fragment>
+              )
+            } else {
+              return(
+                //if the user was created it will display the levels available to play
+                <React.Fragment>
+                  {
+                    selectLevel()
+                  }
+                </React.Fragment>
+              )
+            }
+          })()
         }
       </div>
   ) 

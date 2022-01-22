@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 const App = () => {
   //remember to set level back to '' after development
-  const [level, setLevel] = useState(['level_one', 'Ski Slopes'])
+  const [level, setLevel] = useState()
   //remember to set username to '' after development
   const [username, setUsername] = useState('Hasbulla')
   //remember to set back usercreated_false after development

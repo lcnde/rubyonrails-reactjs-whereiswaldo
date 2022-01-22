@@ -34,6 +34,11 @@ Edit:
 The user is creating using Async javascript. With the fetch api a post request is submitted to the server. Rails will automatically understands to assign the request body to params because the request headers contain 'application/json'. 
 Also an authenticity token is passed. Without it Rails will not accept user inputs.
 
+Edit:
+There is a single component for all levels. When you click a level from the Home, the state will update beased on which level you click. The Level component will display the level based on what level is saved inside the state. 
+When the Home component mounts, the level is removed from the state.
+The username is saved inside the State inside the App component, so it is potentially available globally, but the main use of it is inside the Header and Score.
+
 # Database Tables
 
 (waldo wenda odlaw wizard)
