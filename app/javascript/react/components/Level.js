@@ -23,11 +23,20 @@ const Level = (props) => {
 
   }, [])
 
-
+  //chooses which level to return for the query
+  const returnLevel = () => {
+    if (props.level[0] === "level_one") {
+      return 1
+    } else if (props.level[0] === "level_two") {
+      return 2
+    } else if (props.level[0] === "level_three") {
+      return 3
+    }
+  }
   //equals to componentDidMount
-  //fetches coords from API
+  //fetches coords from API based on level
   useEffect(() => {
-    const url = "/api/v1/levels/show/1"
+    const url = `/api/v1/levels/show/${returnLevel()}`
     fetch(url).then(response => {
       if (response.status === 200){
         console.log('Status 200')
