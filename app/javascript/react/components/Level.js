@@ -11,7 +11,7 @@ import wizardProfilePic from '../assets/images/wizard-profile-pic.jpg';
 
 
 const Level = (props) => {
-  const [coords, setCoords] = useState('')
+  const [waldoCoords, setWaldoCoords] = useState('')
   const [foundCharacter, setFoundCharacter] = useState({waldo: "red", wenda: "red", odlaw: "red", wizard:"red"})
 
   const currentLocation = useLocation();
@@ -48,15 +48,17 @@ const Level = (props) => {
     }).then(data => {
         console.log('Request successful')
         console.log('Request data: ', data)
-        data.map((element) => {
-          // console.log(element)
-          let stateElement = [element.id, element.map_id, element.game_character_id, element.x_coords, element.y_coords]
-          setCoords(prevState => [...prevState, stateElement])
-        })
+        setWaldoCoords({
+                    id: data[0].id, 
+                    map_id: data[0].map_id, 
+                    game_character_id: data[0].game_character_id,
+                    x_coords: data[0].x_coords,
+                    y_coords: data[0].y_coords
+                  })
       }).catch(err => console.log(err))
     }, [])
 
-    console.log(coords)
+    console.log(waldoCoords.x_coords)
     //this functions changes the character border color if the user finds the character
     const changeCharBorderColor = () => {
       // console.log(coords)
