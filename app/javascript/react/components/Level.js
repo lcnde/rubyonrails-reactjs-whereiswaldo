@@ -56,6 +56,7 @@ const Level = (props) => {
 
 
     //converts the coords of the user clicks in case the resolution is different than 1920x1080
+    //converted value of the clicks are what actually gets used to compare with the coords in the database, thats because if the canvas shrinks, the coords would be different than the click coords at fullHD resolution (which are stored in the database)
     const cursorPositionConverter = (clickX, clickY, canvasWidth, canvasHeight) => {
       const defaultWidth = 1920
       const defaultHeight = 1220
