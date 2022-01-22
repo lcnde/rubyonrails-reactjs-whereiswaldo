@@ -68,17 +68,21 @@ const Level = (props) => {
       // the converted coordinates are the ones that corresponds with the character coords on a 1920 * 1220 canvas
       return [convertedX, convertedY]
     }
-    //get cursor click coords and canvas dimensions
-    // I know it's bad practice to make a function do multiple things but clientHeight was buggy and I directly used the getBoundingClientRect info that I fetched when I get the click coordinates
+    //get cursor click coords
     const getCursorPosition = (canvas, event) => {
       const rect = canvas.getBoundingClientRect()
       const x = event.clientX - rect.left
       const y = event.clientY - rect.top
-      const canvasWidth = rect.width
-      const canvasHeight = rect.height
-      console.log('Canvas dimensions', canvasWidth, canvasHeight)
       console.log("Click coords: x " + x + " y: " + y)
-      return [x, y, canvasWidth, canvasHeight]
+      return [x, y]
+    }
+    //get canvas dimensions
+    const getCanvasDimensions = (canvas) => {
+      const info = canvas.getBoundingClientRect()
+      const canvasWidth = info.width
+      const canvasHeight = info.height
+      console.log('Canvas dimensions', canvasWidth, canvasHeight)
+      return [canvasWidth, canvasHeight]
     }
     useEffect(() => {
       const canvas = document.getElementById('canvas')
@@ -87,7 +91,8 @@ const Level = (props) => {
       
       canvas.addEventListener('mousedown', function(e) {
         let clickXY = getCursorPosition(canvas, e)
-        let convertedClickXY = cursorPositionConverter(clickXY[0], clickXY[1], clickXY[2], clickXY[3])
+        let canvasDimensions = getCanvasDimensions(canvas)
+        let convertedClickXY = cursorPositionConverter(clickXY[0], clickXY[1], canvasDimensions[0], canvasDimensions[1])
         console.log(convertedClickXY)
       })
 
