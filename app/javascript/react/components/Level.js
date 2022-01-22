@@ -55,22 +55,37 @@ const Level = (props) => {
     }, [])
 
 
-    // gets the coordinates of user clicks
-    // calculates the width of the canvas
+    //converts the coords of the user clicks in case the resolution is different than 1920x1080
+    const cursorPositionConverter = (clickX, clickY, canvasWidth, canvasHeight) => {
+      const defaultWidth = 1920
+      const defaultHeight = 1220
+      const convertedX = (defaultWidth * clickX) / canvasWidth
+      const convertedY = (defaultHeight * clickY) / canvasHeight
+      // the converted coordinates are the ones that corresponds with the character coords on a 1920 * 1220 canvas
+      return [convertedX, convertedY]
+    }
     function getCursorPosition(canvas, event) {
       const rect = canvas.getBoundingClientRect()
       const x = event.clientX - rect.left
       const y = event.clientY - rect.top
-      console.log("x: " + x + " y: " + y)
+      // console.log("x: " + x + " y: " + y)
+      return [x, y]
     }
     useEffect(() => {
+      // gets the coordinates of user clicks
       const canvas = document.getElementById('canvas')
-      canvas.addEventListener('mousedown', function(e) {
-          getCursorPosition(canvas, e)
-        })
+      // calculates the width of the canvas
       let width = canvas.clientWidth;
       let height = canvas.clientHeight;
-      console.log(width, height)
+      console.log('Canvas dimensions: ', width, height)
+      
+      let clickX, clickY, convertedClickX, convertedClickY
+      canvas.addEventListener('mousedown', function(e) {
+        [clickX, clickY] = getCursorPosition(canvas, e)
+        [convertedClickX, convertedClickY] = cursorPositionConverter(clickX, clickY, width, height)
+        console.log(convertedClickX, convertedClickY)
+      })
+
     }, [])
 
 
