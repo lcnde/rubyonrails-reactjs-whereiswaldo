@@ -12,6 +12,9 @@ import wizardProfilePic from '../assets/images/wizard-profile-pic.jpg';
 
 const Level = (props) => {
   const [waldoCoords, setWaldoCoords] = useState('')
+  const [wendaCoords, setWendaCoords] = useState('')
+  const [odlawCoords, setOdlawCoords] = useState('')
+  const [wizardCoords, setWizardCoords] = useState('')
   const [foundCharacter, setFoundCharacter] = useState({waldo: "red", wenda: "red", odlaw: "red", wizard:"red"})
 
   const currentLocation = useLocation();
@@ -48,21 +51,40 @@ const Level = (props) => {
     }).then(data => {
         console.log('Request successful')
         console.log('Request data: ', data)
+        //React wont let me access arrays inside arrays [[],[]] or arrays inside objects
+
         setWaldoCoords({
-                    id: data[0].id, 
-                    map_id: data[0].map_id, 
-                    game_character_id: data[0].game_character_id,
-                    x_coords: data[0].x_coords,
-                    y_coords: data[0].y_coords
+          id: data[0].id, 
+          map_id: data[0].map_id, 
+          game_character_id: data[0].game_character_id,
+          x_coords: data[0].x_coords,
+          y_coords: data[0].y_coords
                   })
+        setWendaCoords({
+          id: data[1].id, 
+          map_id: data[1].map_id, 
+          game_character_id: data[1].game_character_id,
+          x_coords: data[1].x_coords,
+          y_coords: data[1].y_coords
+        })
+        setWizardCoords({
+          id: data[2].id, 
+          map_id: data[2].map_id, 
+          game_character_id: data[2].game_character_id,
+          x_coords: data[2].x_coords,
+          y_coords: data[2].y_coords
+        })
+        setOdlawCoords({
+          id: data[3].id, 
+          map_id: data[3].map_id, 
+          game_character_id: data[3].game_character_id,
+          x_coords: data[3].x_coords,
+          y_coords: data[3].y_coords
+        })
       }).catch(err => console.log(err))
     }, [])
 
-    console.log(waldoCoords.x_coords)
-    //this functions changes the character border color if the user finds the character
-    const changeCharBorderColor = () => {
-      // console.log(coords)
-    }
+    
     //converts the coords of the user clicks in case the resolution is different than 1920x1080
     //converted value of the clicks are what actually gets used to compare with the coords in the database, thats because if the canvas shrinks, the coords would be different than the click coords at fullHD resolution (which are stored in the database)
     const cursorPositionConverter = (clickX, clickY, canvasWidth, canvasHeight) => {
@@ -93,42 +115,49 @@ const Level = (props) => {
       console.log('Canvas dimensions', canvasWidth, canvasHeight)
       return [canvasWidth, canvasHeight]
     }
+
+ 
+
     useEffect(() => {
       const canvas = document.getElementById('canvas')
       // gets the coordinates of user clicks
       // calculates the width of the canvas
-      
       canvas.addEventListener('mousedown', function(e) {
         let clickXY = getCursorPosition(canvas, e)
         let canvasDimensions = getCanvasDimensions(canvas)
         let convertedClickXY = cursorPositionConverter(clickXY[0], clickXY[1], canvasDimensions[0], canvasDimensions[1])
         console.log(convertedClickXY)
-        changeCharBorderColor()
+        changeCharBorderColor(convertedClickXY)
       })
-
     }, [])
-
-
+    //this functions changes the character border color if the user finds the character
+   function changeCharBorderColor(conv) {
+     console.log(conv)
+     console.log(coord)
+      setFoundCharacter({waldo: "lightgreen", wenda: "red", odlaw: "red", wizard:"red"})
+    }
+    
+    
     //displays image based on the level
     const levelImage = () => {
       if (props.level[0] === "level_one") {
         return (
           <img id="canvas" className="level-image" src={skiSlopes} />
-        )
-      } else if (props.level[0] === "level_two") {
-        return(
-          <img id="canvas" className="level-image" src={spaceStation} />
-        )
-      } else if (props.level[0] === "level_three") {
-        return(
+          )
+        } else if (props.level[0] === "level_two") {
+          return(
+            <img id="canvas" className="level-image" src={spaceStation} />
+            )
+          } else if (props.level[0] === "level_three") {
+            return(
           <img id="canvas" className="level-image" src={fruitLand} />
-        )
-      }
+          )
+        }
     }
-
+    
     // console.log("Current coords status:", coords)
     // console.log(`Level: ${props.level}`)
-
+    
     // this function assigns the color around the character (red if there were NOT found, lightgreen if they WERE found)
     const characterBorder = (char) => {
       let color = foundCharacter[char]
