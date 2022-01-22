@@ -84,7 +84,6 @@ const Level = (props) => {
       }).catch(err => console.log(err))
     }, [])
 
-    
     //converts the coords of the user clicks in case the resolution is different than 1920x1080
     //converted value of the clicks are what actually gets used to compare with the coords in the database, thats because if the canvas shrinks, the coords would be different than the click coords at fullHD resolution (which are stored in the database)
     const cursorPositionConverter = (clickX, clickY, canvasWidth, canvasHeight) => {
@@ -116,8 +115,6 @@ const Level = (props) => {
       return [canvasWidth, canvasHeight]
     }
 
- 
-
     useEffect(() => {
       const canvas = document.getElementById('canvas')
       // gets the coordinates of user clicks
@@ -129,12 +126,36 @@ const Level = (props) => {
         console.log(convertedClickXY)
         changeCharBorderColor(convertedClickXY)
       })
-    }, [])
+    })
     //this functions changes the character border color if the user finds the character
-   function changeCharBorderColor(conv) {
-     console.log(conv)
-     console.log(coord)
-      setFoundCharacter({waldo: "lightgreen", wenda: "red", odlaw: "red", wizard:"red"})
+    function changeCharBorderColor(conv) {
+
+     if ( (Math.floor(waldoCoords.x_coords) - 35) < conv[0] && 
+          (Math.floor(waldoCoords.x_coords) + 35) > conv[0] &&
+          (Math.floor(waldoCoords.y_coords) - 35) < conv[1] &&
+          (Math.floor(waldoCoords.y_coords) + 35) > conv[1]
+          ) {
+       setFoundCharacter({waldo: "lightgreen"})
+     } else if (  (Math.floor(wendaCoords.x_coords) - 35) < conv[0] && 
+                  (Math.floor(wendaCoords.x_coords) + 35) > conv[0] &&
+                  (Math.floor(wendaCoords.y_coords) - 35) < conv[1] &&
+                  (Math.floor(wendaCoords.y_coords) + 35) > conv[1]
+                  ) {
+          setFoundCharacter({wenda: "lightgreen"})
+      } else if ( (Math.floor(wizardCoords.x_coords) - 35) < conv[0] && 
+                  (Math.floor(wizardCoords.x_coords) + 35) > conv[0] &&
+                  (Math.floor(wizardCoords.y_coords) - 35) < conv[1] &&
+                  (Math.floor(wizardCoords.y_coords) + 35) > conv[1]
+                  ) {
+            setFoundCharacter({wizard: "lightgreen"})
+      } else if ( (Math.floor(odlawCoords.x_coords) - 35) < conv[0] && 
+                  (Math.floor(odlawCoords.x_coords) + 35) > conv[0] &&
+                  (Math.floor(odlawCoords.y_coords) - 35) < conv[1] &&
+                  (Math.floor(odlawCoords.y_coords) + 35) > conv[1]
+                  ) {
+    setFoundCharacter({odlaw: "lightgreen"})
+}
+     console.log('Converted coords',conv)
     }
     
     

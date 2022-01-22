@@ -23,3 +23,13 @@ Level.create(map_id: 1, game_character_id: 1, x_coords: 1641, y_coords: 900)
 Level.create(map_id: 1, game_character_id: 2, x_coords: 941, y_coords: 507)
 Level.create(map_id: 1, game_character_id: 3, x_coords: 132, y_coords: 919)
 Level.create(map_id: 1, game_character_id: 4, x_coords: 609, y_coords: 778)
+
+Level.create(map_id: 2, game_character_id: 1, x_coords: 778, y_coords: 766)
+Level.create(map_id: 2, game_character_id: 2, x_coords: 566, y_coords: 631)
+Level.create(map_id: 2, game_character_id: 3, x_coords: 1499, y_coords: 711)
+Level.create(map_id: 2, game_character_id: 4, x_coords: 135, y_coords: 843)
+
+Level.create(map_id: 3, game_character_id: 1, x_coords: 1711, y_coords: 811)
+Level.create(map_id: 3, game_character_id: 2, x_coords: 255, y_coords: 1038)
+Level.create(map_id: 3, game_character_id: 3, x_coords: 474, y_coords: 605)
+Level.create(map_id: 3, game_character_id: 4, x_coords: 1268, y_coords: 687)
