@@ -3,14 +3,15 @@
 
   .characters-and-timer-container {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
     .characters-container {
       display: grid;
+      justify-content: center;
       gap: 20px;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 10px 100px;
+      grid-template-columns: repeat(4, auto);
+      padding: 10px 10px;
 
       img {
         width: 100px;
@@ -25,10 +26,10 @@
       align-items: center;
       font-size: 70px;
       color: white;
+      background-color: #721D1D;
 
       h2 {
         padding: 10px 40px;
-        background-color: #721D1D;
       }
     }
   }

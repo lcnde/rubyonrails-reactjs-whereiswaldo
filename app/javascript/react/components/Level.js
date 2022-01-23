@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Stopwatch from '../components/Stopwatch';
 import skiSlopes from '../assets/images/skiSlopes.jpeg';
 import spaceStation from '../assets/images/spaceStation.jpeg';
 import fruitLand from '../assets/images/fruitLand.jpeg';
@@ -16,6 +17,8 @@ const Level = (props) => {
   const [odlawCoords, setOdlawCoords] = useState('')
   const [wizardCoords, setWizardCoords] = useState('')
   const [foundCharacter, setFoundCharacter] = useState({waldo: "red", wenda: "red", odlaw: "red", wizard:"red"})
+  const [time,setTime] = useState(0)
+  const [start, setStart] = useState(true)
 
   const currentLocation = useLocation();
   
@@ -95,6 +98,7 @@ const Level = (props) => {
       // console.log('canvas height is ', canvasHeight)
       const convertedX = (defaultWidth * clickX) / canvasWidth
       const convertedY = (defaultHeight * clickY) / canvasHeight
+      // console.log('Converted click coords: ', convertedX, convertedY)
       // the converted coordinates are the ones that corresponds with the character coords on a 1920 * 1220 canvas
       return [convertedX, convertedY]
     }
@@ -103,7 +107,7 @@ const Level = (props) => {
       const rect = canvas.getBoundingClientRect()
       const x = event.clientX - rect.left
       const y = event.clientY - rect.top
-      console.log("Click coords: x " + x + " y: " + y)
+      // console.log("Click coords: x " + x + " y: " + y)
       return [x, y]
     }
     //get canvas dimensions
@@ -111,7 +115,7 @@ const Level = (props) => {
       const info = canvas.getBoundingClientRect()
       const canvasWidth = info.width
       const canvasHeight = info.height
-      console.log('Canvas dimensions', canvasWidth, canvasHeight)
+      // console.log('Canvas dimensions', canvasWidth, canvasHeight)
       return [canvasWidth, canvasHeight]
     }
 
@@ -123,7 +127,7 @@ const Level = (props) => {
         let clickXY = getCursorPosition(canvas, e)
         let canvasDimensions = getCanvasDimensions(canvas)
         let convertedClickXY = cursorPositionConverter(clickXY[0], clickXY[1], canvasDimensions[0], canvasDimensions[1])
-        console.log(convertedClickXY)
+        // console.log(convertedClickXY)
         changeCharBorderColor(convertedClickXY)
       })
     })
@@ -154,8 +158,8 @@ const Level = (props) => {
                   (Math.floor(odlawCoords.y_coords) + 35) > conv[1]
                   ) {
     setFoundCharacter({odlaw: "lightgreen"})
-}
-     console.log('Converted coords',conv)
+      }
+    //  console.log('Converted coords',conv)
     }
     
     
@@ -189,14 +193,17 @@ const Level = (props) => {
     <div className="level-main-container">
       {/* <h1>{props.level}</h1> */}
       <div className="characters-and-timer-container">
+        <div className="timer-container">
+          {<Stopwatch   time={time}
+                        setTime={setTime}
+                        start={start}
+                        setStart={setStart} />}
+        </div>
         <div className="characters-container">
           <img style={characterBorder('waldo')} src={waldoProfilePic} />
           <img style={characterBorder('wenda')} src={wendaProfilePic} />
           <img style={characterBorder('odlaw')} src={odlawProfilePic} />
           <img style={characterBorder('wizard')} src={wizardProfilePic} />
-        </div>
-        <div className="timer-container">
-          <h2>00:00</h2>
         </div>
       </div>
       {levelImage()}
