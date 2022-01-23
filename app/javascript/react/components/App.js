@@ -9,9 +9,10 @@ const App = () => {
   //remember to set level back to '' after development
   const [level, setLevel] = useState(['level_one', 'Ski Slopes'])
   //remember to set username to '' after development
-  const [username, setUsername] = useState('Hasbulla')
+  const [username, setUsername] = useState('')
+  const [userId, setUserId] = useState('')
   //remember to set back usercreated_false after development
-  const [userCreation, setUserCreation] = useState('usercreated_true')
+  const [userCreation, setUserCreation] = useState('usercreated_false')
   const [location, setLocation] = useState('')
   
   return(
@@ -23,7 +24,9 @@ const App = () => {
               userCreation={userCreation}
               setUserCreation={setUserCreation}
               location={location}
-              setLocation={setLocation} />
+              setLocation={setLocation}
+              userId={userId}
+              setUserId={setUserId} />
     </React.Fragment>
   ) 
 }

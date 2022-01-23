@@ -52,27 +52,28 @@ const Home = (props) => {
     }).then(response => {
       //json response
       console.log(response)
-      console.log(response.username)
+      console.log(response.id)
       if (response.username !== props.username) {
         setErrorMessage(response.username[0])
       } else {
         setErrorMessage('')
         props.setUserCreation('usercreated_true')
+        props.setUserId(response.id)
       }
     }).catch(err => {
       console.log(err)
     })
   }
-
-
+  
+  
   const usernameHandleChange = (e) => {
     props.setUsername(e.target.value)
   }
-
+  
   const linkToLevel = (lvl) => {
     props.setLevel(lvl);
   }
-
+  
   
   const insertUsername = () => {
     return(
