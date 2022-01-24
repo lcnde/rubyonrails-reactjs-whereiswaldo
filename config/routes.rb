@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       # get '/show/:map', to: 'coords#show'
       get 'levels/index'
       get 'levels/show/:map_id', to: 'levels#show'
+      get 'scores/index'
+      get 'scores/new'
+      post 'scores/create', to: 'scores#create'
     end
   end
 

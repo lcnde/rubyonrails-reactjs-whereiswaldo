@@ -21,7 +21,8 @@ const Router = (props) => {
                                               userId={props.userId}
                                               setUserId={props.setUserId} />} />
         <Route path="level" element={<Level level={props.level}
-                                            setLocation={props.setLocation} />} />                                      
+                                            setLocation={props.setLocation} 
+                                            userId={props.userId} />} />                                      
       </Routes>
     </BrowserRouter>
   ) 
