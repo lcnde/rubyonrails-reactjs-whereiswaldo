@@ -246,7 +246,7 @@ const Level = (props) => {
         return(
           <div className="level-overlay">
           <div className="center-text">
-            <h3>Congratulations! You have finished the level in x minutes</h3>
+            <h3>Congratulations! You have finished the level in {("0" + Math.floor((time / 60))).slice(-2)}:{("0" + Math.floor((time % 60))).slice(-2)} minutes</h3>
             <Link to="/">Return to home</Link>
           </div>
         </div>
