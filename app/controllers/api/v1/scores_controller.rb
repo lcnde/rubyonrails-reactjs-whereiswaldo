@@ -1,5 +1,24 @@
 class Api::V1::ScoresController < ApplicationController
   def index
+    score = Score.all
+    # mapName = Map.where(id: score.map_id)
+    data = {}
+
+    score.each.with_index do |value, i|
+      puts "Score: #{value.id}" 
+      data[i] = {
+        id: value.id, 
+        user_name: User.find_by(id: value.user_id).username, 
+        map_name: Map.find_by(id: value.map_id).name,
+        score: value.score
+      }
+    end
+
+    # data = {
+    #   "1" => {"key" => "value"},
+    #   "2" =>{"key2" => "value2"}
+    # }
+    render json: data
   end
 
   def new
