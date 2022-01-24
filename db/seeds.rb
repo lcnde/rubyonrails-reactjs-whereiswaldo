@@ -10,8 +10,8 @@
 # Coord.create(map: 1, x_coords: 904.201, y_coords: 145.555, character: 'super mario')
 # Coord.create(map: 1, x_coords: 532.201, y_coords: 1888.555, character: 'lauigi')
 
-Map.create(name: 'Space Station')
 Map.create(name: 'Ski Slopes')
+Map.create(name: 'Space Station')
 Map.create(name: 'Fruit Land')
 
 GameCharacter.create(character_name: 'Waldo')
