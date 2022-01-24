@@ -57,7 +57,10 @@ const Level = (props) => {
     }).then(data => {
         console.log('Request successful')
         console.log('Request data: ', data)
-        //React wont let me access arrays inside arrays [[],[]] or arrays inside objects
+        //React wont let me access arrays inside arrays [[],[]] or arrays inside objects.
+        // update: The issue has been solved for the same case scenario inside Home component.
+        // The issue was that calling the data from the state would start before the api request was finished, so it would give an error because it didn't have any data to output. The solution was to add a conditional check if the state contains any data (if (data){}...)
+        // Code needs to be refactored with the above solution
 
         setWaldoCoords({
           id: data[0].id, 

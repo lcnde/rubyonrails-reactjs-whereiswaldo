@@ -10,7 +10,6 @@ const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [scores, setScores] = useState('')
-  
 
   const currentLocation = useLocation();
   
@@ -78,20 +77,9 @@ const Home = (props) => {
       }
     }).then(response => {
       console.log('Request data: ', response)
-      const responseKeys = Object.keys(response)
-      const responseLength = responseKeys.length
-      const data = new Array(responseLength)
-      for (let i = 0; i < responseLength; i++) {
-        data[i] = response[i]
-      }
-      data.map(element => {
-        // console.log("map:",element)
-        setScores(prevScore => [...prevScore, element])
-      })
+      setScores(response)
     }).catch(err=>{console.log(err)})
   },[])
-
-  console.log("scores:",scores)
   
   const usernameHandleChange = (e) => {
     props.setUsername(e.target.value)
@@ -180,7 +168,30 @@ const Home = (props) => {
         }
         <div className="scores-container">
           <h2>Scores</h2>
-          {}
+          <div className="scores-list">
+
+          {
+            (()=>{
+              if (scores) {
+                let scoresArray = []
+                for(let i = 0; i < Object.keys(scores).length; i++){
+                  // console.log(i)
+                  scoresArray.push(scores[i])
+                }
+                let listScores = scoresArray.map((e)=>{
+                  return (
+                    <div className="score-row">
+                      <span>{e.user_name}</span>
+                      <span>{e.map_name}</span>
+                      <span>{("0" + Math.floor((e.score / 60))).slice(-2)}:{("0" + Math.floor((e.score % 60))).slice(-2)}</span>
+                    </div>
+                  )
+                })
+                return listScores
+              }
+            })()
+          }
+          </div>
         </div>
       </div>
   ) 

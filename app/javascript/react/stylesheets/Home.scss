@@ -5,6 +5,8 @@ $background-color: #7B2020;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  gap: 50px;
+  padding: 50px 0;
 
   .username-form-container {
     display: grid;
@@ -92,6 +94,32 @@ $background-color: #7B2020;
           max-height: 150px;
           object-fit: cover;
         }
+      }
+    }
+  }
+
+  .scores-container {
+    display: grid;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.151);
+    padding: 30px 0;
+    gap: 30px;
+    color: white;
+
+    h2 {
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .scores-list {
+      display: grid;
+      gap: 10px;
+      font-size: 20px;
+
+      .score-row {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 20px;
       }
     }
   }
