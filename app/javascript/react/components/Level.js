@@ -52,7 +52,7 @@ const Level = (props) => {
         console.log('Status 200')
         return response.json();
       } else {
-        throw new Error('Something went wrong')
+        throw new Error('Something went wrong fetching the level')
       }
     }).then(data => {
         console.log('Request successful')

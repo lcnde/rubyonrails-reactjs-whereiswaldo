@@ -9,6 +9,7 @@ import fruitLand from '../assets/images/fruitLand.jpeg';
 const Home = (props) => {
   const [authToken, setAuthToken] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [scores, setScores] = useState('')
   
 
   const currentLocation = useLocation();
@@ -64,7 +65,33 @@ const Home = (props) => {
       console.log(err)
     })
   }
-  
+
+  //fetch scores
+  useEffect(() => {
+    const url = '/api/v1/scores/index'
+    fetch(url).then(response => {
+      if (response.status === 200) {
+        console.log('Status 200')
+        return response.json();
+      } else {
+        throw new Error('Something went wrong fetching the scores')
+      }
+    }).then(response => {
+      console.log('Request data: ', response)
+      const responseKeys = Object.keys(response)
+      const responseLength = responseKeys.length
+      const data = new Array(responseLength)
+      for (let i = 0; i < responseLength; i++) {
+        data[i] = response[i]
+      }
+      data.map(element => {
+        // console.log("map:",element)
+        setScores(prevScore => [...prevScore, element])
+      })
+    }).catch(err=>{console.log(err)})
+  },[])
+
+  console.log("scores:",scores)
   
   const usernameHandleChange = (e) => {
     props.setUsername(e.target.value)
@@ -151,6 +178,10 @@ const Home = (props) => {
             }
           })()
         }
+        <div className="scores-container">
+          <h2>Scores</h2>
+          {}
+        </div>
       </div>
   ) 
 }
