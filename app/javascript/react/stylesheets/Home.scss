@@ -113,14 +113,10 @@ $background-color: #7B2020;
 
     .scores-list {
       display: grid;
-      gap: 10px;
+      row-gap: 10px;
+      column-gap: 30px;
       font-size: 20px;
-
-      .score-row {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 20px;
-      }
+      grid-template-columns: repeat(3, auto);
     }
   }
 }

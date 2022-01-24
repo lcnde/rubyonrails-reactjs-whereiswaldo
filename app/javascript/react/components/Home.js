@@ -161,38 +161,37 @@ const Home = (props) => {
                   {
                     selectLevel()
                   }
+                  <div className="scores-container">
+                    <h2>Scores</h2>
+                    <div className="scores-list">
+                    {
+                      (()=>{
+                        if (scores) {
+                          let scoresArray = []
+                          for(let i = 0; i < Object.keys(scores).length; i++){
+                            // console.log(i)
+                            scoresArray.push(scores[i])
+                          }
+                          let listScores = scoresArray.map((e)=>{
+                            return (
+                              [
+                                <span>{e.user_name}</span>,
+                                <span>{e.map_name}</span>,
+                                <span>{("0" + Math.floor((e.score / 60))).slice(-2)}:{("0" + Math.floor((e.score % 60))).slice(-2)}</span>
+                              ]
+                            )
+                          })
+                          return listScores
+                        }
+                      })()
+                    }
+                    </div>
+                  </div>
                 </React.Fragment>
               )
             }
           })()
         }
-        <div className="scores-container">
-          <h2>Scores</h2>
-          <div className="scores-list">
-
-          {
-            (()=>{
-              if (scores) {
-                let scoresArray = []
-                for(let i = 0; i < Object.keys(scores).length; i++){
-                  // console.log(i)
-                  scoresArray.push(scores[i])
-                }
-                let listScores = scoresArray.map((e)=>{
-                  return (
-                    <div className="score-row">
-                      <span>{e.user_name}</span>
-                      <span>{e.map_name}</span>
-                      <span>{("0" + Math.floor((e.score / 60))).slice(-2)}:{("0" + Math.floor((e.score % 60))).slice(-2)}</span>
-                    </div>
-                  )
-                })
-                return listScores
-              }
-            })()
-          }
-          </div>
-        </div>
       </div>
   ) 
 }
