@@ -9,11 +9,11 @@ const App = () => {
   //remember to set level back to '' after development
   const [level, setLevel] = useState(['', ''])
   //remember to set username to '' after development
-  const [username, setUsername] = useState('hasb')
+  const [username, setUsername] = useState('')
   //set it to '' after developmetn
-  const [userId, setUserId] = useState('3')
+  const [userId, setUserId] = useState('')
   //remember to set back usercreated_false after development
-  const [userCreation, setUserCreation] = useState('usercreated_true')
+  const [userCreation, setUserCreation] = useState('usercreated_false')
   const [location, setLocation] = useState('')
   
   return(
