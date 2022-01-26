@@ -35,4 +35,5 @@ The score is registered only when the user finds all 4 characters into the map.
 # Database Tables
 
 ![Database tables](FRwUDejuWF.png)
+https://dbdiagram.io/
 
