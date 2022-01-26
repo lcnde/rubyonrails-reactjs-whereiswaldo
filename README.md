@@ -5,7 +5,7 @@ Find Waldo and his friends in the map as fast as you can!
 
 This app was created to learn how to use React as front-end with Ruby on Rails as back-end. 
 
-# How the app works
+## How the app works
 
 The front and back end are treated as 2 different apps.
 The front-end communicates with the back-end using http requests.
@@ -34,5 +34,5 @@ The score is registered only when the user finds all 4 characters into the map.
 
 # Database Tables
 
-[Database tables](FRwUDejuWF.png)
+![Database tables](FRwUDejuWF.png)
 
